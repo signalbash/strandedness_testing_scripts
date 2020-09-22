@@ -1,0 +1,5 @@
+human_rnaseq.txt filter=lfs diff=lfs merge=lfs -text
+yeast_rnaseq.txt filter=lfs diff=lfs merge=lfs -text
+arabidopsis_rnaseq.txt filter=lfs diff=lfs merge=lfs -text
+*.psd filter=lfs diff=lfs merge=lfs -text
+*_rnaseq.txt filter=lfs diff=lfs merge=lfs -text

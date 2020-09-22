@@ -1,0 +1,21 @@
+"sample"	"study"	"pub_stranded"	"failed"	"strand_fwd"	"strand_rev"	"max_strand"	"max_strand_no_fail"	"aligned"	"percent_aligned"	"test_stranded"	"species"	"flag"	"species_sci"	"intergenic_failed"	"intergenic_strand_fwd"	"intergenic_strand_rev"	"intergenic_max_strand"	"intergenic_max_strand_no_fail"	"intergenic_aligned"
+"SRR1555415"	"PRJNA258654"	"Unstranded"	0.0475	0.5259	0.4267	0.5259	0.552068024354399	188077	0.940385	"Unstranded"	"yeast"	"Passed"	"s. cerevisiae"	0	0.4971	0.5029	0.5029	0.5029	0.086
+"SRR1605749"	"PRJNA263283"	"Stranded"	0.0619	0.3432	0.5949	0.5949	0.634154141349536	150099	0.750495	"Unstranded"	"yeast"	"Failed"	"s. cerevisiae"	0	0.4993	0.5007	0.5007	0.5007	0.581095
+"SRR1656884"	"PRJNA267766"	"Stranded"	0.2	0.0082	0.7918	0.7918	0.98975	105293	0.526465	"Stranded"	"yeast"	"Passed"	"s. cerevisiae"	0	0.6549	0.3451	0.6549	0.6549	0.09823
+"SRR2817418"	"PRJNA299815"	"Stranded"	0.1001	0.0326	0.8673	0.8673	0.963773752639182	138804	0.69402	"Stranded"	"yeast"	"Passed"	"s. cerevisiae"	0	0.6172	0.3828	0.6172	0.6172	0.175165
+"SRR3140907"	"PRJNA310655"	"Stranded"	0.1662	0.0094	0.8244	0.8244	0.988726313264572	105614	0.52807	"Stranded"	"yeast"	"Passed"	"s. cerevisiae"	0	0.7784	0.2216	0.7784	0.7784	0.180355
+"SRR3180781"	"PRJNA312727"	"Stranded"	0.0435	0.0071	0.9494	0.9494	0.992577104025091	187041	0.935205	"Stranded"	"yeast"	"Passed"	"s. cerevisiae"	0	0.4971	0.5029	0.5029	0.5029	0.149075
+"SRR3407195"	"PRJNA319164"	"Stranded"	0.0432	0.008	0.9488	0.9488	0.991638795986622	190396	0.95198	"Stranded"	"yeast"	"Passed"	"s. cerevisiae"	0	0.4947	0.5053	0.5053	0.5053	0.11575
+"SRR4018567"	"PRJNA338508"	"Stranded"	0.0432	0.0118	0.945	0.945	0.987667224080268	181525	0.907625	"Stranded"	"yeast"	"Passed"	"s. cerevisiae"	0	0.5018	0.4982	0.5018	0.5018	0.109995
+"SRR5000465"	"PRJNA352693"	"Stranded"	0.0357	0.0101	0.9543	0.9543	0.98952716715056	182022	0.91011	"Stranded"	"yeast"	"Passed"	"s. cerevisiae"	0	0.4698	0.5302	0.5302	0.5302	0.122695
+"SRR5309371"	"PRJNA377731"	"Stranded"	0.0655	0.0143	0.9202	0.9202	0.984697699304441	165123	0.825615	"Stranded"	"yeast"	"Passed"	"s. cerevisiae"	0	0.5287	0.4713	0.5287	0.5287	0.0947
+"SRR5417301"	"PRJNA381711"	"Unstranded"	0.0324	0.4943	0.4733	0.4943	0.510851591566763	152117	0.760585	"Unstranded"	"yeast"	"Passed"	"s. cerevisiae"	0	0.5065	0.4935	0.5065	0.5065	0.14829
+"SRR5468230"	"PRJNA383899"	"Stranded"	0.028	0.0163	0.9557	0.9557	0.983230452674897	176825	0.884125	"Stranded"	"yeast"	"Passed"	"s. cerevisiae"	0	0.5096	0.4904	0.5096	0.5096	0.138185
+"SRR6357070"	"PRJNA421472"	"Stranded"	0.038	0.0087	0.9534	0.9534	0.990957280947926	159224	0.79612	"Stranded"	"yeast"	"Passed"	"s. cerevisiae"	0	0.4589	0.5411	0.5411	0.5411	0.15496
+"SRR6767450"	"PRJNA435723"	"Stranded"	0.031	0.8093	0.1597	0.8093	0.835190918472652	125047	0.625235	"Stranded"	"yeast"	"Failed"	"s. cerevisiae"	0	0.4852	0.5148	0.5148	0.5148	0.10757
+"SRR7174202"	"PRJNA471740"	"Stranded"	0.1687	0.0089	0.8223	0.8223	0.989292589027911	120526	0.60263	"Stranded"	"yeast"	"Passed"	"s. cerevisiae"	0	0.5831	0.4169	0.5831	0.5831	0.12226
+"SRR7363059"	"PRJNA476714"	"Stranded"	0.0472	0.0055	0.9474	0.9474	0.994228145660615	189347	0.946735	"Stranded"	"yeast"	"Passed"	"s. cerevisiae"	0	0.5287	0.4713	0.5287	0.5287	0.106335
+"SRR8109496"	"PRJNA498394"	"Stranded"	0.0305	0.0133	0.9562	0.9562	0.986281588447653	153772	0.76886	"Stranded"	"yeast"	"Passed"	"s. cerevisiae"	0	0.4563	0.5437	0.5437	0.5437	0.19313
+"SRR8198059"	"PRJNA505786"	"Stranded"	0.0192	0.0425	0.9383	0.9383	0.956668026101142	123973	0.619865	"Stranded"	"yeast"	"Passed"	"s. cerevisiae"	0	0.5062	0.4938	0.5062	0.5062	0.14634
+"SRR8761856"	"PRJNA528474"	"Unstranded"	0.139	0.4288	0.4323	0.4323	0.502032284287539	174829	0.874145	"Unstranded"	"yeast"	"Passed"	"s. cerevisiae"	0	0.5228	0.4772	0.5228	0.5228	0.03614
+"SRR9336459"	"PRJNA550078"	"Stranded"	0.0327	0.0235	0.9438	0.9438	0.97570557221131	183404	0.91702	"Stranded"	"yeast"	"Passed"	"s. cerevisiae"	0	0.5081	0.4919	0.5081	0.5081	0.25185
