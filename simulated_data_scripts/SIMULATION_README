@@ -1,0 +1,123 @@
+### HUMAN
+mkdir -p stranded/data
+cd stranded/data
+mkdir -p human
+cd human
+
+easyascp ftp.sra.ebi.ac.uk/vol1/fastq/SRR102/038/SRR10223738/SRR10223738_1.fastq.gz
+easyascp ftp.sra.ebi.ac.uk/vol1/fastq/SRR102/038/SRR10223738/SRR10223738_2.fastq.gz
+easyascp ftp.sra.ebi.ac.uk/vol1/fastq/SRR108/024/SRR10894924/SRR10894924_1.fastq.gz
+easyascp ftp.sra.ebi.ac.uk/vol1/fastq/SRR108/024/SRR10894924/SRR10894924_2.fastq.gz
+easyascp ftp.sra.ebi.ac.uk/vol1/fastq/SRR372/005/SRR3727795/SRR3727795_1.fastq.gz
+easyascp ftp.sra.ebi.ac.uk/vol1/fastq/SRR372/005/SRR3727795/SRR3727795_2.fastq.gz
+easyascp ftp.sra.ebi.ac.uk/vol1/fastq/SRR401/003/SRR4016943/SRR4016943_1.fastq.gz
+easyascp ftp.sra.ebi.ac.uk/vol1/fastq/SRR401/003/SRR4016943/SRR4016943_2.fastq.gz
+
+mkdir -p fastq
+mv *.fastq.gz fastq
+
+mkdir -p simulated_reads
+# run code for simulating data (varying N and varying percent stranded)
+run_all_sims.sh SRR10223738 Homo_sapiens.GRCh38.100.gtf Homo_sapiens.GRCh38.cdna.all.fa
+run_all_sims.sh SRR10894924 Homo_sapiens.GRCh38.100.gtf Homo_sapiens.GRCh38.cdna.all.fa
+run_all_sims.sh SRR3727795 Homo_sapiens.GRCh38.100.gtf Homo_sapiens.GRCh38.cdna.all.fa
+run_all_sims.sh SRR4016943 Homo_sapiens.GRCh38.100.gtf Homo_sapiens.GRCh38.cdna.all.fa
+
+rm simulated_reads/*.fq.gz
+rm -rf simulated_reads/SRR*
+
+# generate 200,000 read samples for testing runtimes
+Rscript polyester_sim.R -n 200000 -r 3 -s 1 -l 100 SRR10223738 Homo_sapiens.GRCh38.cdna.all.fa
+Rscript polyester_sim.R -n 200000 -r 3 -s 1 -l 100 SRR10894924 Homo_sapiens.GRCh38.cdna.all.fa
+Rscript polyester_sim.R -n 200000 -r 3 -s 1 -l 100 SRR3727795 Homo_sapiens.GRCh38.cdna.all.fa
+Rscript polyester_sim.R -n 200000 -r 3 -s 1 -l 100 SRR4016943 Homo_sapiens.GRCh38.cdna.all.fa
+
+# get runtimes
+cd simulated_reads
+ls */sample*_1.fasta.gz | sed 's/_1.fasta.gz//g' > filenames.txt
+cat filenames.txt | while read line; do ./time_check.sh "$line"_1.fasta.gz "$line"_2.fasta.gz ../Homo_sapiens.GRCh38.100.gtf ../Homo_sapiens.GRCh38.cdna.all.fa; done &> timing_checks.txt
+
+### YEAST
+
+cd ../
+mkdir -p yeast
+cd yeast
+
+easyascp ftp.sra.ebi.ac.uk/vol1/fastq/SRR155/005/SRR1555415/SRR1555415_1.fastq.gz
+easyascp ftp.sra.ebi.ac.uk/vol1/fastq/SRR155/005/SRR1555415/SRR1555415_2.fastq.gz
+easyascp ftp.sra.ebi.ac.uk/vol1/fastq/SRR165/004/SRR1656884/SRR1656884_1.fastq.gz
+easyascp ftp.sra.ebi.ac.uk/vol1/fastq/SRR165/004/SRR1656884/SRR1656884_2.fastq.gz
+easyascp ftp.sra.ebi.ac.uk/vol1/fastq/SRR281/008/SRR2817418/SRR2817418_1.fastq.gz
+easyascp ftp.sra.ebi.ac.uk/vol1/fastq/SRR281/008/SRR2817418/SRR2817418_2.fastq.gz
+easyascp ftp.sra.ebi.ac.uk/vol1/fastq/SRR541/001/SRR5417301/SRR5417301_1.fastq.gz
+easyascp ftp.sra.ebi.ac.uk/vol1/fastq/SRR541/001/SRR5417301/SRR5417301_2.fastq.gz
+
+mkdir -p fastq
+mv *.fastq.gz fastq
+mkdir -p simulated_reads
+
+# run code for simulating data (varying N and varying percent stranded)
+run_all_sims.sh SRR1555415 Saccharomyces_cerevisiae.R64-1-1.100.gtf Saccharomyces_cerevisiae.R64-1-1.cdna.all.fa
+run_all_sims.sh SRR1656884 Saccharomyces_cerevisiae.R64-1-1.100.gtf Saccharomyces_cerevisiae.R64-1-1.cdna.all.fa
+run_all_sims.sh SRR2817418 Saccharomyces_cerevisiae.R64-1-1.100.gtf Saccharomyces_cerevisiae.R64-1-1.cdna.all.fa
+run_all_sims.sh SRR5417301 Saccharomyces_cerevisiae.R64-1-1.100.gtf Saccharomyces_cerevisiae.R64-1-1.cdna.all.fa
+
+rm simulated_reads/*.fq.gz
+rm -rf simulated_reads/SRR*
+
+
+# generate 200,000 read samples for testing runtimes
+Rscript polyester_sim.R -n 200000 -r 3 -s 1 -l 100 SRR1555415 Saccharomyces_cerevisiae.R64-1-1.cdna.all.fa
+Rscript polyester_sim.R -n 200000 -r 3 -s 1 -l 100 SRR1656884 Saccharomyces_cerevisiae.R64-1-1.cdna.all.fa
+Rscript polyester_sim.R -n 200000 -r 3 -s 1 -l 100 SRR2817418 Saccharomyces_cerevisiae.R64-1-1.cdna.all.fa
+Rscript polyester_sim.R -n 200000 -r 3 -s 1 -l 100 SRR5417301 Saccharomyces_cerevisiae.R64-1-1.cdna.all.fa
+
+# get runtimes
+cd simulated_reads
+ls */sample*_1.fasta.gz | sed 's/_1.fasta.gz//g' > filenames.txt
+cat filenames.txt | while read line; do ./time_check.sh "$line"_1.fasta.gz "$line"_2.fasta.gz ../Saccharomyces_cerevisiae.R64-1-1.100.gtf ../Saccharomyces_cerevisiae.R64-1-1.cdna.all.fa; done &> timing_checks.txt
+
+
+### ARABIDOPSIS
+cd ../
+mkdir -p arabidopsis
+cd arabidopsis
+
+easyascp ftp.sra.ebi.ac.uk/vol1/fastq/SRR161/001/SRR1613921/SRR1613921_1.fastq.gz
+easyascp ftp.sra.ebi.ac.uk/vol1/fastq/SRR161/001/SRR1613921/SRR1613921_2.fastq.gz
+easyascp ftp.sra.ebi.ac.uk/vol1/fastq/SRR208/005/SRR2088865/SRR2088865_1.fastq.gz
+easyascp ftp.sra.ebi.ac.uk/vol1/fastq/SRR208/005/SRR2088865/SRR2088865_2.fastq.gz
+easyascp ftp.sra.ebi.ac.uk/vol1/fastq/SRR340/009/SRR3403539/SRR3403539_1.fastq.gz
+easyascp ftp.sra.ebi.ac.uk/vol1/fastq/SRR340/009/SRR3403539/SRR3403539_2.fastq.gz
+easyascp ftp.sra.ebi.ac.uk/vol1/fastq/SRR511/007/SRR5112407/SRR5112407_1.fastq.gz
+easyascp ftp.sra.ebi.ac.uk/vol1/fastq/SRR511/007/SRR5112407/SRR5112407_2.fastq.gz
+
+mkdir -p fastq
+mv *.fastq.gz fastq
+mkdir -p simulated_reads
+
+# run code for simulating data (varying N and varying percent stranded)
+run_all_sims.sh SRR1613921 Arabidopsis_thaliana.TAIR10.47.gtf Arabidopsis_thaliana.TAIR10.cdna.all.fa
+run_all_sims.sh SRR2088865 Arabidopsis_thaliana.TAIR10.47.gtf Arabidopsis_thaliana.TAIR10.cdna.all.fa
+run_all_sims.sh SRR3403539 Arabidopsis_thaliana.TAIR10.47.gtf Arabidopsis_thaliana.TAIR10.cdna.all.fa
+run_all_sims.sh SRR5112407 Arabidopsis_thaliana.TAIR10.47.gtf Arabidopsis_thaliana.TAIR10.cdna.all.fa
+
+rm simulated_reads/*.fq.gz
+rm -rf simulated_reads/SRR*
+
+# generate 200,000 read samples for testing runtimes
+Rscript polyester_sim.R -n 200000 -r 3 -s 1 -l 100 SRR1613921 Arabidopsis_thaliana.TAIR10.cdna.all.fa
+Rscript polyester_sim.R -n 200000 -r 3 -s 1 -l 100 SRR2088865 Arabidopsis_thaliana.TAIR10.cdna.all.fa
+Rscript polyester_sim.R -n 200000 -r 3 -s 1 -l 100 SRR3403539 Arabidopsis_thaliana.TAIR10.cdna.all.fa
+Rscript polyester_sim.R -n 200000 -r 3 -s 1 -l 100 SRR5112407 Arabidopsis_thaliana.TAIR10.cdna.all.fa
+
+# get runtimes
+cd simulated_reads
+ls */sample*_1.fasta.gz | sed 's/_1.fasta.gz//g' > filenames.txt
+cat filenames.txt | while read line; do ./time_check.sh "$line"_1.fasta.gz "$line"_2.fasta.gz ../Arabidopsis_thaliana.TAIR10.47.gtf ../Arabidopsis_thaliana.TAIR10.cdna.all.fa; done &> timing_checks.txt
+
+### Rscript for analysing simulated data
+cd ../
+Rscript simulated_data_plots.R
+
+Rscript process_runtimes.R
