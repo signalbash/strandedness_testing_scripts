@@ -19,3 +19,5 @@ Rscript annotate_studies_for_download.R
 
 # make plots
 Rscript make_plots.R
+
+See simulated_data_scripts/SIMULATION_README for information on how to run all simulation code & analysis
